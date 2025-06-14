@@ -1,0 +1,104 @@
+\documentclass{book}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{KL}{Klein’s Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+
+\begin{document}
+
+\begin{thm}[Binomial theorem]
+	\begin{equation}
+		(x + y)^n = \sum_{k = 0}^{n} \binom{n}{k} x^{n - k} y^k
+	\end{equation}
+\end{thm}
+
+\begin{thm}[Sum of the first $n$ natural numbers]
+	\begin{equation}
+		\sum_{k = 0}^{n} k = \frac{n (n + 1)}{2}
+	\end{equation}
+\end{thm}
+
+\begin{thm}[Sum of the cubes of the first $n$ natural numbers]
+	\begin{equation}
+		\sum_{k = 1}^{n} k^3 = \left( \sum_{k = 1}^{n} k \right)^2 = \left(\frac{n (n + 1)}{2} \right)^2
+	\end{equation}
+\end{thm}
+\begin{proof}
+	\begin{equation}
+		(k + 1)^4 - k^4 = 4 k^3 + 6 k^2 + 4 k + 1
+	\end{equation}
+	Writing the formula for $k = 1, \dots, n$ and adding, we obtain
+
+	\begin{equation*}
+		\begin{array}{rcl}
+			2^4 - 1^4       & =      & 4 \cdot 1^3 + 6 \cdot 1^2 + 4 \cdot 1 + 1                                                                                         \\
+			3^4 - 2^4       & =      & 4 \cdot 2^3 + 6 \cdot 2^2 + 4 \cdot 2 + 1                                                                                         \\
+			                & \vdots &                                                                                                                                   \\
+			(n + 1)^4 - n^4 & =      & 4 \cdot n^3 + 6 \cdot n^2 + 4 \cdot n + 1                                                                                         \\
+			\hline
+			(n + 1)^4 - 1^4 & =      & 4 \cdot \displaystyle\sum_{k = 1}^n k^3 + 6 \cdot \displaystyle\sum_{k = 1}^{n} k^2 + 4 \cdot \displaystyle\sum_{k = 1}^{n} k + n
+		\end{array}
+	\end{equation*}
+	and
+	\begin{align*}
+		\sum_{k = 1}^n k^3 & = \frac{1}{4} \left((n + 1)^4 - 1^4 - 6 \cdot \sum_{k = 1}^{n} k^2 - 4 \cdot \sum_{k = 1}^{n} k - n \right)       \\
+		                   & = \frac{1}{4} \left((n + 1)^4 - 1 - 6 \cdot \frac{n (n + 1) (2n + 1)}{6} - 4 \cdot \frac{n (n + 1)}{2} - n\right) \\
+		                   & = \frac{(n + 1)^4 - n (n + 1) (2n + 1) - 2n(n + 1) - (n + 1)}{4}                                                  \\
+		                   & = \frac{(n + 1) \left((n + 1)^3 - (n + 1)(2n + 1) \right)}{4}                                                     \\
+		                   & = \frac{(n + 1)^2 \left((n + 1)^2 - (2n + 1) \right)}{4}                                                          \\
+		                   & = \left(\frac{n (n + 1)}{2}\right)^2                                                                              \\
+		                   & = \left(\sum_{k = 1}^{n} k\right)^2 \text{.}
+	\end{align*}
+\end{proof}
+
+\begin{prop}[Sum of the fourth powers of the first n natural numbers]
+	\begin{equation}
+		\sum_{k = 1}^n k^4 = \frac{n(n + 1)(2n + 1)(3n^2 + 3n - 1)}{30}
+	\end{equation}
+
+\end{prop}
+\begin{proof}
+	\begin{equation}
+		(k + 1)^5 - k^5 = 5 k^4 + 10 k^3 + 10 k^2 + 5 k + 1
+	\end{equation}
+	Writing the formula for $k = 1, \dots, n$ and adding, we obtain
+
+	\begin{equation*}
+		\begin{array}{rcl}
+			2^5 - 1^4       & =      & 5 \cdot 1^4 + 10 \cdot 1^3 + 10 \cdot 1^2 + 5 \cdot 1 + 1                                                                                                                 \\
+			3^5 - 2^4       & =      & 5 \cdot 2^4 + 10 \cdot 2^3 + 10 \cdot 2^2 + 5 \cdot 2 + 1                                                                                                                 \\
+			                & \vdots &                                                                                                                                                                           \\
+			(n + 1)^5 - n^4 & =      & 5 \cdot n^4 + 10 \cdot n^3 + 10 \cdot n^2 + 5 \cdot n + 1                                                                                                                 \\
+			\hline
+			(n + 1)^5 - 1^4 & =      & 5 \cdot \displaystyle\sum_{k = 1}^n k^4 + 10 \cdot \displaystyle\sum_{k = 1}^{n} k^3 + 10 \cdot \displaystyle\sum_{k = 1}^{n} k^2 + 5 \displaystyle\sum_{k = 1}^{n} k + n
+		\end{array}
+	\end{equation*}
+	and
+	\begin{align*}
+		\sum_{k = 1}^n k^4 & = \frac{1}{5}\left((n + 1)^5 - 10 \cdot \sum_{k = 1}^{n} k^3 - 10 \cdot \sum_{k = 1}^{n} k^2 - 5 \sum_{k = 1}^{n} k - (n + 1)\right) \\
+		                   & = \frac{1}{5} \left((n + 1)^5 - 10 \frac{n^2 (n + 1)^2}{2^2} - 10 \frac{n (n + 1)(2n + 1)}{6} \right.                                \\
+		                   & \quad - \left. 5 \frac{n(n + 1)}{2} - (n + 1) \vphantom{\frac{1^2}{1^2}}\right)                                                      \\
+		                   & = \frac{(n + 1)\left(6(n + 1)^4 - 15 n^2 (n + 1) - 10 n(2n + 1) - 15n - 6\right)}{30}                                                \\
+		                   & = \frac{n(n + 1)(6 n^3 + 9 n^2 + n - 1)}{30}                                                                                         \\
+		                   & = \frac{n(n + 1)(2n + 1)(3n^2 + 3n - 1)}{30}
+	\end{align*}
+\end{proof}
+
+\end{document}
